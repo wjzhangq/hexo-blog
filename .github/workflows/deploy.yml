@@ -32,6 +32,8 @@ jobs:
 
       - name: Hexo build
         run: |
+          yarn global add hexo-cli
+          hexo -v
           yarn clean
           yarn build
 
