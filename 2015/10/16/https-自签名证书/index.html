@@ -14,7 +14,7 @@
 <meta property="og:description" content="公司需要将外网接口全部改为https方式，保证客户端数据传输的安全。并且将客户端连接改为长连接，这样能同时保证传输效率。客户端是自己的代码，所以使用自己的签名就行。   https自签名步骤：1234openssl genrsa -des3 -out server.orig.key 2048 ＃生成密钥openssl rsa -in server.orig.key -out server.key">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2015-10-16T04:11:08.000Z">
-<meta property="article:modified_time" content="2023-01-20T04:26:32.754Z">
+<meta property="article:modified_time" content="2023-01-20T08:10:20.030Z">
 <meta property="article:author" content="Wenjin">
 <meta name="twitter:card" content="summary">
     
@@ -62,11 +62,9 @@
         <!--
        --><li><a href="/">首页</a></li><!--
      --><!--
-       --><li><a href="/about/">关于</a></li><!--
+       --><li><a href="/search/">搜索</a></li><!--
      --><!--
        --><li><a href="/archives/">归档</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li><!--
      -->
       </ul>
     </span>
@@ -167,11 +165,9 @@
          
           <li><a href="/">首页</a></li>
          
-          <li><a href="/about/">关于</a></li>
+          <li><a href="/search/">搜索</a></li>
          
           <li><a href="/archives/">归档</a></li>
-         
-          <li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li>
         
       </ul>
     </div>
@@ -222,11 +218,9 @@
         <!--
        --><li><a href="/">首页</a></li><!--
      --><!--
-       --><li><a href="/about/">关于</a></li><!--
+       --><li><a href="/search/">搜索</a></li><!--
      --><!--
        --><li><a href="/archives/">归档</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li><!--
      -->
       </ul>
     </nav>
@@ -279,6 +273,14 @@
 <!-- search -->
 
 <!-- Google Analytics -->
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1876477-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-1876477-2');
+    </script>
 
 <!-- Baidu Analytics -->
 
