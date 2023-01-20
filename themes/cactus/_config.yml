@@ -42,7 +42,7 @@ tags_overview: false
 #   - sort_updated: sort posts by last modification date instead of creation date.
 posts_overview:
   show_all_posts: false
-  post_count: 5
+  post_count: 15
   sort_updated: false
 
 # Customize the archive view.
@@ -62,7 +62,7 @@ post:
 # Customize the copyright years
 # Note: if start_year/end_year not provided, will use current year.
 copyright:
-  start_year: 2016
+  start_year: 2010
   end_year:
 
 # Customize the 404 page
@@ -188,8 +188,8 @@ umami_analytics:
 # logo and/or favicons of you website.
 # To generate hash: `$ echo -n "name@email.com" | md5`.
 gravatar:
-  email: name@email.com
-  hash: d41d8cd98f00b204e9800998ecf8427e
+  email: blog@zhangwenjin.com
+  hash: 573092828aaefa24267a6494d6b1f7fc
 
 # loads libraries and styles from CDN instead or relying on local files
 cdn:
