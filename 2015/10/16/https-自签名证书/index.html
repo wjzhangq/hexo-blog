@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="公司需要将外网接口全部改为https方式，保证客户端数据传输的安全。并且将客户端连接改为长连接，这样能同时保证传输效率。客户端是自己的代码，所以使用自己的签名就行。   https自签名步骤：1234openssl genrsa -des3 -out server.orig.key 2048 ＃生成密钥openssl rsa -in server.orig.key -out server.key">
+<meta property="og:type" content="article">
+<meta property="og:title" content="https 自签名证书">
+<meta property="og:url" content="http://blog.zhangwenjin.com/2015/10/16/https-%E8%87%AA%E7%AD%BE%E5%90%8D%E8%AF%81%E4%B9%A6/index.html">
+<meta property="og:site_name" content="Wenjin&#39;s Blog">
+<meta property="og:description" content="公司需要将外网接口全部改为https方式，保证客户端数据传输的安全。并且将客户端连接改为长连接，这样能同时保证传输效率。客户端是自己的代码，所以使用自己的签名就行。   https自签名步骤：1234openssl genrsa -des3 -out server.orig.key 2048 ＃生成密钥openssl rsa -in server.orig.key -out server.key">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2015-10-16T04:11:08.000Z">
+<meta property="article:modified_time" content="2023-01-20T04:20:39.297Z">
+<meta property="article:author" content="Wenjin">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>https 自签名证书</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/2015/11/17/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2015/10/12/nginx-%E7%BB%9F%E8%AE%A1%E8%AF%B7%E6%B1%82%E6%95%B0%E6%A8%A1%E5%9D%97ngx-req-status/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://blog.zhangwenjin.com/2015/10/16/https-%E8%87%AA%E7%AD%BE%E5%90%8D%E8%AF%81%E4%B9%A6/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://blog.zhangwenjin.com/2015/10/16/https-%E8%87%AA%E7%AD%BE%E5%90%8D%E8%AF%81%E4%B9%A6/&text=https 自签名证书"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://blog.zhangwenjin.com/2015/10/16/https-%E8%87%AA%E7%AD%BE%E5%90%8D%E8%AF%81%E4%B9%A6/&title=https 自签名证书"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://blog.zhangwenjin.com/2015/10/16/https-%E8%87%AA%E7%AD%BE%E5%90%8D%E8%AF%81%E4%B9%A6/&is_video=false&description=https 自签名证书"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=https 自签名证书&body=Check out this article: http://blog.zhangwenjin.com/2015/10/16/https-%E8%87%AA%E7%AD%BE%E5%90%8D%E8%AF%81%E4%B9%A6/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://blog.zhangwenjin.com/2015/10/16/https-%E8%87%AA%E7%AD%BE%E5%90%8D%E8%AF%81%E4%B9%A6/&title=https 自签名证书"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://blog.zhangwenjin.com/2015/10/16/https-%E8%87%AA%E7%AD%BE%E5%90%8D%E8%AF%81%E4%B9%A6/&title=https 自签名证书"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://blog.zhangwenjin.com/2015/10/16/https-%E8%87%AA%E7%AD%BE%E5%90%8D%E8%AF%81%E4%B9%A6/&title=https 自签名证书"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://blog.zhangwenjin.com/2015/10/16/https-%E8%87%AA%E7%AD%BE%E5%90%8D%E8%AF%81%E4%B9%A6/&title=https 自签名证书"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://blog.zhangwenjin.com/2015/10/16/https-%E8%87%AA%E7%AD%BE%E5%90%8D%E8%AF%81%E4%B9%A6/&name=https 自签名证书&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://blog.zhangwenjin.com/2015/10/16/https-%E8%87%AA%E7%AD%BE%E5%90%8D%E8%AF%81%E4%B9%A6/&t=https 自签名证书"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#https%E8%87%AA%E7%AD%BE%E5%90%8D%E6%AD%A5%E9%AA%A4%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">https自签名步骤：</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        https 自签名证书
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Wenjin</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2015-10-16T04:11:08.000Z" itemprop="datePublished">2015-10-16</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>公司需要将外网接口全部改为https方式，保证客户端数据传输的安全。并且将客户端连接改为长连接，这样能同时保证传输效率。客户端是自己的代码，所以使用自己的签名就行。  </p>
+<h3 id="https自签名步骤："><a href="#https自签名步骤：" class="headerlink" title="https自签名步骤："></a>https自签名步骤：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">openssl genrsa -des3 -out server.orig.key 2048 ＃生成密钥</span><br><span class="line">openssl rsa -in server.orig.key -out server.key #去除密钥中的密码</span><br><span class="line">openssl req -new -subj &quot;/C=CN/ST=Beijing/L=Beijing/O=Beijing/OU=wefit/CN=*.wefit.com.cn&quot; -key server.key -out server.csr #生成公钥</span><br><span class="line">openssl x509 -req -days 36500 -in server.csr -signkey server.key -out server.crt #公钥签名生成证书</span><br></pre></td></tr></table></figure>
+<p>证书签名可选配置(可以不选，这里列出只是备注下)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[req]</span><br><span class="line">req_extensions = v3_req</span><br><span class="line"></span><br><span class="line">distinguished_name = req_distinguished_name</span><br><span class="line"></span><br><span class="line">[req_distinguished_name]</span><br><span class="line"></span><br><span class="line">[ v3_req ]</span><br><span class="line"></span><br><span class="line"># Extensions to add to a certificate request</span><br><span class="line"></span><br><span class="line">basicConstraints = CA:FALSE</span><br><span class="line">keyUsage = nonRepudiation, digitalSignature, keyEncipherment</span><br><span class="line">subjectAltName = @alt_names</span><br><span class="line"></span><br><span class="line">[alt_names]</span><br><span class="line">DNS.1 = *.wefit.com.cn</span><br></pre></td></tr></table></figure>
+
+<p>nginx 配置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">listen 443 ssl;</span><br><span class="line">ssl_certificate /opt/ca/server.crt;</span><br><span class="line">ssl_certificate_key /opt/ca/server.key;</span><br></pre></td></tr></table></figure>
+<p>一切ok。客户端长连接略过。强烈推荐python urllib3模块</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#https%E8%87%AA%E7%AD%BE%E5%90%8D%E6%AD%A5%E9%AA%A4%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">https自签名步骤：</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://blog.zhangwenjin.com/2015/10/16/https-%E8%87%AA%E7%AD%BE%E5%90%8D%E8%AF%81%E4%B9%A6/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://blog.zhangwenjin.com/2015/10/16/https-%E8%87%AA%E7%AD%BE%E5%90%8D%E8%AF%81%E4%B9%A6/&text=https 自签名证书"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://blog.zhangwenjin.com/2015/10/16/https-%E8%87%AA%E7%AD%BE%E5%90%8D%E8%AF%81%E4%B9%A6/&title=https 自签名证书"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://blog.zhangwenjin.com/2015/10/16/https-%E8%87%AA%E7%AD%BE%E5%90%8D%E8%AF%81%E4%B9%A6/&is_video=false&description=https 自签名证书"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=https 自签名证书&body=Check out this article: http://blog.zhangwenjin.com/2015/10/16/https-%E8%87%AA%E7%AD%BE%E5%90%8D%E8%AF%81%E4%B9%A6/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://blog.zhangwenjin.com/2015/10/16/https-%E8%87%AA%E7%AD%BE%E5%90%8D%E8%AF%81%E4%B9%A6/&title=https 自签名证书"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://blog.zhangwenjin.com/2015/10/16/https-%E8%87%AA%E7%AD%BE%E5%90%8D%E8%AF%81%E4%B9%A6/&title=https 自签名证书"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://blog.zhangwenjin.com/2015/10/16/https-%E8%87%AA%E7%AD%BE%E5%90%8D%E8%AF%81%E4%B9%A6/&title=https 自签名证书"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://blog.zhangwenjin.com/2015/10/16/https-%E8%87%AA%E7%AD%BE%E5%90%8D%E8%AF%81%E4%B9%A6/&title=https 自签名证书"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://blog.zhangwenjin.com/2015/10/16/https-%E8%87%AA%E7%AD%BE%E5%90%8D%E8%AF%81%E4%B9%A6/&name=https 自签名证书&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://blog.zhangwenjin.com/2015/10/16/https-%E8%87%AA%E7%AD%BE%E5%90%8D%E8%AF%81%E4%B9%A6/&t=https 自签名证书"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2023
+    Wenjin
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

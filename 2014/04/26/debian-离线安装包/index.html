@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="应用场景：很多相同机器需要安装同样的软件包，全部通过apt-get网络安装很不划算。可以考虑把同步服务器的安装包作为apt-get的离线源。 步骤： 1234567891011121314#安装打包工具apt-get install dpkg-dev#生成离线目录mkdir offlinePackage#复制所有apt-get已有软件包cp -r &#x2F;var&#x2F;cache&#x2F;apt&#x2F;archives">
+<meta property="og:type" content="article">
+<meta property="og:title" content="debian 离线安装包">
+<meta property="og:url" content="http://blog.zhangwenjin.com/2014/04/26/debian-%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E5%8C%85/index.html">
+<meta property="og:site_name" content="Wenjin&#39;s Blog">
+<meta property="og:description" content="应用场景：很多相同机器需要安装同样的软件包，全部通过apt-get网络安装很不划算。可以考虑把同步服务器的安装包作为apt-get的离线源。 步骤： 1234567891011121314#安装打包工具apt-get install dpkg-dev#生成离线目录mkdir offlinePackage#复制所有apt-get已有软件包cp -r &#x2F;var&#x2F;cache&#x2F;apt&#x2F;archives">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2014-04-26T18:27:13.000Z">
+<meta property="article:modified_time" content="2023-01-20T04:20:39.297Z">
+<meta property="article:author" content="Wenjin">
+<meta property="article:tag" content="LINUX">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>debian 离线安装包</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/2014/08/17/rpm%E5%8C%85%E5%88%B6%E4%BD%9C/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2011/02/22/php-%E8%BF%AD%E4%BB%A3%E7%9A%84%E4%B8%80%E7%A7%8D%E5%86%99%E6%B3%95/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://blog.zhangwenjin.com/2014/04/26/debian-%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E5%8C%85/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://blog.zhangwenjin.com/2014/04/26/debian-%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E5%8C%85/&text=debian 离线安装包"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://blog.zhangwenjin.com/2014/04/26/debian-%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E5%8C%85/&title=debian 离线安装包"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://blog.zhangwenjin.com/2014/04/26/debian-%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E5%8C%85/&is_video=false&description=debian 离线安装包"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=debian 离线安装包&body=Check out this article: http://blog.zhangwenjin.com/2014/04/26/debian-%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E5%8C%85/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://blog.zhangwenjin.com/2014/04/26/debian-%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E5%8C%85/&title=debian 离线安装包"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://blog.zhangwenjin.com/2014/04/26/debian-%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E5%8C%85/&title=debian 离线安装包"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://blog.zhangwenjin.com/2014/04/26/debian-%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E5%8C%85/&title=debian 离线安装包"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://blog.zhangwenjin.com/2014/04/26/debian-%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E5%8C%85/&title=debian 离线安装包"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://blog.zhangwenjin.com/2014/04/26/debian-%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E5%8C%85/&name=debian 离线安装包&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://blog.zhangwenjin.com/2014/04/26/debian-%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E5%8C%85/&t=debian 离线安装包"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        debian 离线安装包
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Wenjin</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2014-04-26T18:27:13.000Z" itemprop="datePublished">2014-04-27</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/LINUX/" rel="tag">LINUX</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>应用场景：<br>很多相同机器需要安装同样的软件包，全部通过apt-get网络安装很不划算。<br>可以考虑把同步服务器的安装包作为apt-get的离线源。</p>
+<p>步骤：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">安装打包工具</span></span><br><span class="line">apt-get install dpkg-dev</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">生成离线目录</span></span><br><span class="line">mkdir offlinePackage</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">复制所有apt-get已有软件包</span></span><br><span class="line">cp -r /var/cache/apt/archives  /offlinePackage</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">更改文件权限</span></span><br><span class="line">chmod 777 -R /offlinPackage/</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">建立deb包依赖关系</span></span><br><span class="line">dpkg-scanpackages /offlinePackage/ /dev/null |gzip &gt;/offlinePackage/Packages.gz</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">将生成的Packages.gz包复制到和deb同目录下</span></span><br><span class="line">cp /offlinePackage/Packages.gz /offlinePackage/archives/Packages.gz</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">打包快速传输</span></span><br><span class="line">tar cvzf offlinePackage.tar.gz offlinePackage/</span><br></pre></td></tr></table></figure>
+<p>其他机器使用方式：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/apt/sources.list</span><br><span class="line">添加以下两行至文件末尾：</span><br><span class="line">deb file:///offlinePackage archives/</span><br><span class="line">deb-src file:///offlinePackage archives/</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">将所有的其他deb全部注销掉（<span class="comment">#）</span></span></span><br><span class="line">apt-get update</span><br><span class="line">sudo apt-get  install XXXXX</span><br></pre></td></tr></table></figure>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://blog.zhangwenjin.com/2014/04/26/debian-%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E5%8C%85/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://blog.zhangwenjin.com/2014/04/26/debian-%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E5%8C%85/&text=debian 离线安装包"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://blog.zhangwenjin.com/2014/04/26/debian-%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E5%8C%85/&title=debian 离线安装包"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://blog.zhangwenjin.com/2014/04/26/debian-%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E5%8C%85/&is_video=false&description=debian 离线安装包"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=debian 离线安装包&body=Check out this article: http://blog.zhangwenjin.com/2014/04/26/debian-%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E5%8C%85/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://blog.zhangwenjin.com/2014/04/26/debian-%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E5%8C%85/&title=debian 离线安装包"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://blog.zhangwenjin.com/2014/04/26/debian-%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E5%8C%85/&title=debian 离线安装包"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://blog.zhangwenjin.com/2014/04/26/debian-%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E5%8C%85/&title=debian 离线安装包"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://blog.zhangwenjin.com/2014/04/26/debian-%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E5%8C%85/&title=debian 离线安装包"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://blog.zhangwenjin.com/2014/04/26/debian-%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E5%8C%85/&name=debian 离线安装包&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://blog.zhangwenjin.com/2014/04/26/debian-%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E5%8C%85/&t=debian 离线安装包"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2023
+    Wenjin
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
