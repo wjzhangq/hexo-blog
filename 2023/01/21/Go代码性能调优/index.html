@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="记录一次go代码性能调优实践。由于希望远程看到调试信息，直接使用http方式开启go的pprof调试 123456789101112131415package mainimport (    &quot;log&quot;    &quot;net&#x2F;http&quot;    _ &quot;net&#x2F;http&#x2F;pprof&quot; &#x2F;&#x2F;关键代码，透明的讲pprof加入到代码)func main(">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用pprof对Go代码性能调优">
+<meta property="og:url" content="http://blog.zhangwenjin.com/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/index.html">
+<meta property="og:site_name" content="Wenjin&#39;s Blog">
+<meta property="og:description" content="记录一次go代码性能调优实践。由于希望远程看到调试信息，直接使用http方式开启go的pprof调试 123456789101112131415package mainimport (    &quot;log&quot;    &quot;net&#x2F;http&quot;    _ &quot;net&#x2F;http&#x2F;pprof&quot; &#x2F;&#x2F;关键代码，透明的讲pprof加入到代码)func main(">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://blog.zhangwenjin.com/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/pprof.png">
+<meta property="og:image" content="http://blog.zhangwenjin.com/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/profile1.png">
+<meta property="og:image" content="http://blog.zhangwenjin.com/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/flame.png">
+<meta property="og:image" content="http://blog.zhangwenjin.com/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/trace1.png">
+<meta property="og:image" content="http://blog.zhangwenjin.com/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/trace2.png">
+<meta property="article:published_time" content="2023-01-21T04:14:23.000Z">
+<meta property="article:modified_time" content="2023-01-21T04:54:05.679Z">
+<meta property="article:author" content="Wenjin">
+<meta property="article:tag" content="GO">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog.zhangwenjin.com/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/pprof.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>使用pprof对Go代码性能调优</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/true" title="Wenjin&#39;s Blog" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2023/01/20/%E4%BD%BF%E7%94%A8hexo%E5%92%8Cgithub-%E6%90%AD%E5%BB%BA%E5%85%8D%E8%B4%B9blog%E7%B3%BB%E7%BB%9F/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://blog.zhangwenjin.com/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://blog.zhangwenjin.com/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/&text=使用pprof对Go代码性能调优"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://blog.zhangwenjin.com/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/&title=使用pprof对Go代码性能调优"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://blog.zhangwenjin.com/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/&is_video=false&description=使用pprof对Go代码性能调优"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=使用pprof对Go代码性能调优&body=Check out this article: http://blog.zhangwenjin.com/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://blog.zhangwenjin.com/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/&title=使用pprof对Go代码性能调优"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://blog.zhangwenjin.com/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/&title=使用pprof对Go代码性能调优"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://blog.zhangwenjin.com/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/&title=使用pprof对Go代码性能调优"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://blog.zhangwenjin.com/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/&title=使用pprof对Go代码性能调优"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://blog.zhangwenjin.com/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/&name=使用pprof对Go代码性能调优&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://blog.zhangwenjin.com/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/&t=使用pprof对Go代码性能调优"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#pprof%E6%9F%A5%E7%9C%8B"><span class="toc-number">1.</span> <span class="toc-text">pprof查看</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#trace-%E6%9F%A5%E7%9C%8B"><span class="toc-number">2.</span> <span class="toc-text">trace 查看</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        使用pprof对Go代码性能调优
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Wenjin</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-01-21T04:14:23.000Z" itemprop="datePublished">2023-01-21</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/GO/" rel="tag">GO</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>记录一次go代码性能调优实践。<br>由于希望远程看到调试信息，直接使用http方式开启go的pprof调试</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">&quot;log&quot;</span></span><br><span class="line">    <span class="string">&quot;net/http&quot;</span></span><br><span class="line">    _ <span class="string">&quot;net/http/pprof&quot;</span> <span class="comment">//关键代码，透明的讲pprof加入到代码</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="comment">//do something</span></span><br><span class="line">    &#125;()</span><br><span class="line"></span><br><span class="line">    http.ListenAndServe(<span class="string">&quot;0.0.0.0:10397&quot;</span>, <span class="literal">nil</span>) <span class="comment">//开启端口可以远程访问。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>浏览器方法就能看到如下页面<br><img src="/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/pprof.png" alt="pprof"><br>这个页面非常好用，可以实时看到程序实时运行效果。<br>如果需要看一段时间内的运行状态，需要用到go tool工具，go tool工具有两个方法，一个看pprof统计和trace。下面分开介绍。  </p>
+<h3 id="pprof查看"><a href="#pprof查看" class="headerlink" title="pprof查看"></a>pprof查看</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl &quot;http://127.0.0.1:10397/debug/pprof/profile?seconds=10&quot; -o p.out #获取最近10s的profile信息</span><br><span class="line">go tool pprof -http=:8088 p.out #用浏览器查看刚刚profile文件</span><br></pre></td></tr></table></figure>
+<p>浏览器能直接看到刚刚profile信息<br><img src="/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/profile1.png" alt="profile信息"></p>
+<p>切换菜单就能看到最常用的火焰图。<br><img src="/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/flame.png" alt="火焰图"></p>
+<h3 id="trace-查看"><a href="#trace-查看" class="headerlink" title="trace 查看"></a>trace 查看</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl &quot;http://127.0.0.1:10397/debug/pprof/trace?debug=1&amp;seconds=10&quot; &gt; t.out #获取远程trace文件</span><br><span class="line">go tool trace t.out #查看trace信息</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/trace1.png" alt="trace"><br><img src="/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/trace2.png" alt="trace"></p>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>加载评论需要在浏览器启用 JavaScript 脚本支持。</noscript>
+        </div>
+    </div>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/search/">搜索</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#pprof%E6%9F%A5%E7%9C%8B"><span class="toc-number">1.</span> <span class="toc-text">pprof查看</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#trace-%E6%9F%A5%E7%9C%8B"><span class="toc-number">2.</span> <span class="toc-text">trace 查看</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://blog.zhangwenjin.com/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://blog.zhangwenjin.com/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/&text=使用pprof对Go代码性能调优"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://blog.zhangwenjin.com/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/&title=使用pprof对Go代码性能调优"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://blog.zhangwenjin.com/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/&is_video=false&description=使用pprof对Go代码性能调优"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=使用pprof对Go代码性能调优&body=Check out this article: http://blog.zhangwenjin.com/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://blog.zhangwenjin.com/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/&title=使用pprof对Go代码性能调优"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://blog.zhangwenjin.com/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/&title=使用pprof对Go代码性能调优"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://blog.zhangwenjin.com/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/&title=使用pprof对Go代码性能调优"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://blog.zhangwenjin.com/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/&title=使用pprof对Go代码性能调优"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://blog.zhangwenjin.com/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/&name=使用pprof对Go代码性能调优&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://blog.zhangwenjin.com/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/&t=使用pprof对Go代码性能调优"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2010-2023
+    Wenjin
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1876477-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-1876477-2');
+    </script>
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'cactus-1';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+<!-- utterances Comments -->
+
+</body>
+</html>

@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>使用pprof对Go代码性能调优</title>
+      <link href="/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/"/>
+      <url>/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/</url>
+      
+        <content type="html"><![CDATA[<p>记录一次go代码性能调优实践。<br>由于希望远程看到调试信息，直接使用http方式开启go的pprof调试</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">&quot;log&quot;</span></span><br><span class="line">    <span class="string">&quot;net/http&quot;</span></span><br><span class="line">    _ <span class="string">&quot;net/http/pprof&quot;</span> <span class="comment">//关键代码，透明的讲pprof加入到代码</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="comment">//do something</span></span><br><span class="line">    &#125;()</span><br><span class="line"></span><br><span class="line">    http.ListenAndServe(<span class="string">&quot;0.0.0.0:10397&quot;</span>, <span class="literal">nil</span>) <span class="comment">//开启端口可以远程访问。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>浏览器方法就能看到如下页面<br><img src="/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/pprof.png" alt="pprof"><br>这个页面非常好用，可以实时看到程序实时运行效果。<br>如果需要看一段时间内的运行状态，需要用到go tool工具，go tool工具有两个方法，一个看pprof统计和trace。下面分开介绍。  </p><h3 id="pprof查看"><a href="#pprof查看" class="headerlink" title="pprof查看"></a>pprof查看</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl &quot;http://127.0.0.1:10397/debug/pprof/profile?seconds=10&quot; -o p.out #获取最近10s的profile信息</span><br><span class="line">go tool pprof -http=:8088 p.out #用浏览器查看刚刚profile文件</span><br></pre></td></tr></table></figure><p>浏览器能直接看到刚刚profile信息<br><img src="/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/profile1.png" alt="profile信息"></p><p>切换菜单就能看到最常用的火焰图。<br><img src="/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/flame.png" alt="火焰图"></p><h3 id="trace-查看"><a href="#trace-查看" class="headerlink" title="trace 查看"></a>trace 查看</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl &quot;http://127.0.0.1:10397/debug/pprof/trace?debug=1&amp;seconds=10&quot; &gt; t.out #获取远程trace文件</span><br><span class="line">go tool trace t.out #查看trace信息</span><br><span class="line"></span><br></pre></td></tr></table></figure><p><img src="/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/trace1.png" alt="trace"><br><img src="/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/trace2.png" alt="trace"></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> GO </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>使用hexo和github page 搭建免费blog系统</title>
       <link href="/2023/01/20/%E4%BD%BF%E7%94%A8hexo%E5%92%8Cgithub-%E6%90%AD%E5%BB%BA%E5%85%8D%E8%B4%B9blog%E7%B3%BB%E7%BB%9F/"/>
       <url>/2023/01/20/%E4%BD%BF%E7%94%A8hexo%E5%92%8Cgithub-%E6%90%AD%E5%BB%BA%E5%85%8D%E8%B4%B9blog%E7%B3%BB%E7%BB%9F/</url>

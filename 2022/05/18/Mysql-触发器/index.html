@@ -14,7 +14,7 @@
 <meta property="og:description" content="公司一个业务的Mysql user表总是莫名被修改。项目太老懒得去找具体原因了。最终觉得偷懒使用mysql触发器，将所有user表的改动记录到一个user_log表，如果用户信息被修改，通过查询user_log就能帮用户数据恢复为以前版本。 具体操作如下：    创建user_log 表 12345678CREATE TABLE &#96;t_user_log&#96; (  &#96;lid&#96; int(11) unsi">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-18T13:19:26.000Z">
-<meta property="article:modified_time" content="2023-01-20T14:35:04.222Z">
+<meta property="article:modified_time" content="2023-01-21T04:54:05.687Z">
 <meta property="article:author" content="Wenjin">
 <meta property="article:tag" content="MYSQL">
 <meta name="twitter:card" content="summary">
@@ -46,6 +46,8 @@
     
     <!-- rss -->
     
+    
+      <link rel="alternate" href="/true" title="Wenjin&#39;s Blog" type="application/atom+xml" />
     
 	<!-- mathjax -->
 	
@@ -166,6 +168,12 @@
 
   </div>
 </article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>加载评论需要在浏览器启用 JavaScript 脚本支持。</noscript>
+        </div>
+    </div>
 
 
 
@@ -302,6 +310,18 @@
 <!-- Umami Analytics -->
 
 <!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'cactus-1';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
 
 <!-- utterances Comments -->
 

@@ -14,7 +14,7 @@
 <meta property="og:description" content="整个包只有70M，包含mysql和redis。直接上dockerfile。 12345678910111213141516171819FROM php:7.4-fpm-alpine3.11ADD repositories &#x2F;etc&#x2F;apk&#x2F;repositoriesADD default.conf &#x2F;ADD index.html &#x2F;ADD run.sh &#x2F;RUN apk update &amp;&amp;a">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-12-01T15:40:55.000Z">
-<meta property="article:modified_time" content="2023-01-20T14:35:04.222Z">
+<meta property="article:modified_time" content="2023-01-21T04:54:05.679Z">
 <meta property="article:author" content="Wenjin">
 <meta property="article:tag" content="PHP">
 <meta name="twitter:card" content="summary">
@@ -46,6 +46,8 @@
     
     <!-- rss -->
     
+    
+      <link rel="alternate" href="/true" title="Wenjin&#39;s Blog" type="application/atom+xml" />
     
 	<!-- mathjax -->
 	
@@ -152,6 +154,12 @@
 <figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> php:<span class="number">7.4</span>-fpm-alpine3.<span class="number">11</span></span><br><span class="line"><span class="keyword">ADD</span><span class="language-bash"> repositories /etc/apk/repositories</span></span><br><span class="line"><span class="keyword">ADD</span><span class="language-bash"> default.conf /</span></span><br><span class="line"><span class="keyword">ADD</span><span class="language-bash"> index.html /</span></span><br><span class="line"><span class="keyword">ADD</span><span class="language-bash"> run.sh /</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> apk update &amp;&amp; apk add nginx &amp;&amp; \</span></span><br><span class="line"><span class="language-bash">    apk add m4 autoconf make gcc g++ linux-headers &amp;&amp; \</span></span><br><span class="line"><span class="language-bash">    pecl install redis &amp;&amp; docker-php-ext-enable redis &amp;&amp; \</span></span><br><span class="line"><span class="language-bash">    docker-php-ext-install pdo_mysql opcache mysqli &amp;&amp; \</span></span><br><span class="line"><span class="language-bash">    <span class="built_in">mkdir</span> /run/nginx &amp;&amp; \</span></span><br><span class="line"><span class="language-bash">    <span class="built_in">mv</span> /default.conf /etc/nginx/conf.d &amp;&amp; \</span></span><br><span class="line"><span class="language-bash">    <span class="built_in">touch</span> /run/nginx/nginx.pid &amp;&amp; \</span></span><br><span class="line"><span class="language-bash">    <span class="built_in">chmod</span> 755 /run.sh &amp;&amp; \</span></span><br><span class="line"><span class="language-bash">    apk del m4 autoconf make gcc g++ linux-headers</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">80</span></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">9000</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">ENTRYPOINT</span><span class="language-bash"> [<span class="string">&quot;/run.sh&quot;</span>]</span></span><br></pre></td></tr></table></figure>
   </div>
 </article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>加载评论需要在浏览器启用 JavaScript 脚本支持。</noscript>
+        </div>
+    </div>
 
 
 
@@ -288,6 +296,18 @@
 <!-- Umami Analytics -->
 
 <!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'cactus-1';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
 
 <!-- utterances Comments -->
 
