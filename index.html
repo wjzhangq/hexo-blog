@@ -1,593 +1,1044 @@
 <!DOCTYPE html>
-<html lang=zh>
+<html lang="zh-CN">
 <head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta property="og:type" content="website">
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.zhangwenjin.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta property="og:type" content="website">
 <meta property="og:title" content="Wenjin&#39;s Blog">
 <meta property="og:url" content="http://blog.zhangwenjin.com/index.html">
 <meta property="og:site_name" content="Wenjin&#39;s Blog">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="Wenjin">
 <meta name="twitter:card" content="summary">
-    
-    
-      
-        
-          <link rel="shortcut icon" href="/images/favicon.ico">
-        
-      
-      
-        
-          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-        
-      
-    
-    <!-- title -->
-    <title>Wenjin&#39;s Blog</title>
-    <!-- styles -->
-    
-<link rel="stylesheet" href="/css/style.css">
 
-    <!-- persian styles -->
-    
-    <!-- rss -->
-    
-    
-      <link rel="alternate" href="/true" title="Wenjin&#39;s Blog" type="application/atom+xml" />
-    
-	<!-- mathjax -->
-	
-<meta name="generator" content="Hexo 6.3.0"></head>
+<link rel="canonical" href="http://blog.zhangwenjin.com/">
 
-<body class="max-width mx-auto px3 ltr">
-    
-    <div class="content index py4">
-        
-          <header id="header">
-  <a href="/">
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Wenjin's Blog</title>
   
-    
-      <div id="logo" style="background-image: url(/images/wenjin.png);"></div>
-    
-  
-    <div id="title">
-      <h1>Wenjin&#39;s Blog</h1>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
-  </a>
-  <div id="nav">
-    <ul>
-      <li class="icon">
-        <a href="#" aria-label="目录"><i class="fas fa-bars fa-2x"></i></a>
-      </li>
-      <!--
-     --><li><a href="/">首页</a></li><!--
-   --><!--
-     --><li><a href="/search/">搜索</a></li><!--
-   --><!--
-     --><li><a href="/archives/">归档</a></li><!--
-   -->
-    </ul>
   </div>
-</header>
 
-        
-        <section id="about">
-  
-  
-    <p>
-      在这里找到我：
-      
-      
-      
-        
-          <a class="icon" target="_blank" rel="noopener me" href="https://github.com/wjzhangq/" aria-label="github">
-            <i class="fab fa-github"></i><!--
-      ---></a><!--
-    ---><!--
-    ---> 和 
-        
-      
-        
-          <a class="icon" target="_blank" rel="noopener" href="mailto:blog@zhangwenjin.com" aria-label="mail">
-            <i class="fas fa-envelope"></i><!--
-      ---></a>
-        <!--
-    --->.
-        
-      
-    </p>
-  
-</section>
+  <div class="site-meta">
 
-<section id="writing">
-  <span class="h1"><a href="/archives/">文章</a></span>
-  
-  <ul class="post-list">
-    
-    
-      
-    
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2023-01-21T04:14:23.000Z" itemprop="datePublished">2023-01-21</time>
-        
-      
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Wenjin's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
     </div>
+  </div>
+</div>
 
 
-        <span>
-    
-        <a class="" href="/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/">使用pprof对Go代码性能调优</a>
-    
 
 
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2023-01-20T08:24:27.000Z" itemprop="datePublished">2023-01-20</time>
-        
-      
-    </div>
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
 
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
-        <span>
-    
-        <a class="" href="/2023/01/20/%E4%BD%BF%E7%94%A8hexo%E5%92%8Cgithub-%E6%90%AD%E5%BB%BA%E5%85%8D%E8%B4%B9blog%E7%B3%BB%E7%BB%9F/">使用hexo和github page 搭建免费blog系统</a>
-    
+  </li>
+        <li class="menu-item menu-item-tags">
 
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
 
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2022-12-01T15:40:55.000Z" itemprop="datePublished">2022-12-01</time>
-        
-      
-    </div>
+  </li>
+        <li class="menu-item menu-item-archives">
 
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
-        <span>
-    
-        <a class="" href="/2022/12/01/DOCKER-%E6%89%93%E5%8C%85PHP%E9%A1%B9%E7%9B%AE%E8%AE%B0%E5%BD%95/">DOCKER 打包PHP项目记录</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2022-06-27T13:44:26.000Z" itemprop="datePublished">2022-06-27</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/2022/06/27/PHP-%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">PHP 实现一个简单消息队列</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2022-05-18T13:19:26.000Z" itemprop="datePublished">2022-05-18</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/2022/05/18/Mysql-%E8%A7%A6%E5%8F%91%E5%99%A8/">Mysql 触发器</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2015-12-23T04:18:40.000Z" itemprop="datePublished">2015-12-23</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/2015/12/23/centos-%E9%85%8D%E7%BD%AE%E8%93%9D%E7%89%99%E5%85%B1%E4%BA%AB%E7%BD%91%E7%BB%9C/">centos 配置蓝牙共享网络</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2015-11-25T04:16:45.000Z" itemprop="datePublished">2015-11-25</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/2015/11/25/%E9%98%BF%E9%87%8C%E4%BA%91gre%E6%A8%A1%E5%BC%8F%E7%BB%84%E7%BD%91/">阿里云gre模式组网</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2015-11-17T04:13:16.000Z" itemprop="datePublished">2015-11-17</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/2015/11/17/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/">服务器运维相关总结</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2015-10-16T04:11:08.000Z" itemprop="datePublished">2015-10-16</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/2015/10/16/https-%E8%87%AA%E7%AD%BE%E5%90%8D%E8%AF%81%E4%B9%A6/">https 自签名证书</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2015-10-12T04:08:14.000Z" itemprop="datePublished">2015-10-12</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/2015/10/12/nginx-%E7%BB%9F%E8%AE%A1%E8%AF%B7%E6%B1%82%E6%95%B0%E6%A8%A1%E5%9D%97ngx-req-status/">nginx 统计请求数模块ngx_req_status</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2015-10-09T04:05:21.000Z" itemprop="datePublished">2015-10-09</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/2015/10/09/%E5%8D%9A%E5%AE%A2%E5%8D%87%E7%BA%A7%E4%B8%BAhttps/">博客升级为https</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2015-09-17T04:02:39.000Z" itemprop="datePublished">2015-09-17</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/2015/09/17/Phalcon-%E5%AD%A6%E4%B9%A0/">Phalcon 学习</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2015-08-05T04:59:40.000Z" itemprop="datePublished">2015-08-05</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/2015/08/05/centos-%E8%BD%AFRAID%E4%BD%BF%E7%94%A8/">centos 软RAID使用</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2015-07-28T03:54:39.000Z" itemprop="datePublished">2015-07-28</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/2015/07/28/mariadb-%E5%90%AF%E5%8A%A8%E4%B8%A4%E4%B8%AA%E8%BF%9B%E7%A8%8B/">mariadb 启动两个进程</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2015-07-17T12:49:40.000Z" itemprop="datePublished">2015-07-17</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/2015/07/17/%E5%85%AC%E5%8F%B8vpn%E9%85%8D%E7%BD%AE/">公司vpn配置</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2015-07-16T03:47:22.000Z" itemprop="datePublished">2015-07-16</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/2015/07/16/linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%91%E9%80%81smtp%E9%82%AE%E4%BB%B6/">linux命令行发送smtp邮件</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2015-07-09T10:43:04.000Z" itemprop="datePublished">2015-07-09</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/2015/07/09/centos%E4%BD%BF%E7%94%A8LXC%E9%83%A8%E7%BD%B2%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83/">centos使用LXC部署测试环境</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2015-07-03T07:14:21.000Z" itemprop="datePublished">2015-07-03</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/2015/07/03/Mac-Mini-%E5%AE%89%E8%A3%85centos%E7%B3%BB%E7%BB%9F/">Mac Mini 安装centos系统</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2014-08-17T03:30:55.000Z" itemprop="datePublished">2014-08-17</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/2014/08/17/rpm%E5%8C%85%E5%88%B6%E4%BD%9C/">rpm包制作</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2014-04-26T18:27:13.000Z" itemprop="datePublished">2014-04-27</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/2014/04/26/debian-%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E5%8C%85/">debian 离线安装包</a>
-    
-
-
-</span>
-      </li>
-    
+  </li>
   </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
   
-</section>
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.zhangwenjin.com/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/">
 
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wenjin">
+      <meta itemprop="description" content="">
+    </span>
 
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wenjin's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/" class="post-title-link" itemprop="url">使用pprof对Go代码性能调优</a>
+        </h2>
 
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-01-21 12:14:23" itemprop="dateCreated datePublished" datetime="2023-01-21T12:14:23+08:00">2023-01-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-01-29 23:29:13" itemprop="dateModified" datetime="2023-01-29T23:29:13+08:00">2023-01-29</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
     
     
-    2010-2023
-    Wenjin
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>记录一次go代码性能调优实践。<br>由于希望远程看到调试信息，直接使用http方式开启go的pprof调试</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">&quot;log&quot;</span></span><br><span class="line">    <span class="string">&quot;net/http&quot;</span></span><br><span class="line">    _ <span class="string">&quot;net/http/pprof&quot;</span> <span class="comment">//关键代码，透明的讲pprof加入到代码</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="comment">//do something</span></span><br><span class="line">    &#125;()</span><br><span class="line"></span><br><span class="line">    http.ListenAndServe(<span class="string">&quot;0.0.0.0:10397&quot;</span>, <span class="literal">nil</span>) <span class="comment">//开启端口可以远程访问。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>浏览器方法就能看到如下页面<br><img src="/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/pprof.png" alt="pprof"><br>这个页面非常好用，可以实时看到程序实时运行效果。<br>如果需要看一段时间内的运行状态，需要用到go tool工具，go tool工具有两个方法，一个看pprof统计和trace。下面分开介绍。  </p>
+<h3 id="pprof查看"><a href="#pprof查看" class="headerlink" title="pprof查看"></a>pprof查看</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl &quot;http://127.0.0.1:10397/debug/pprof/profile?seconds=10&quot; -o p.out #获取最近10s的profile信息</span><br><span class="line">go tool pprof -http=:8088 p.out #用浏览器查看刚刚profile文件</span><br></pre></td></tr></table></figure>
+<p>浏览器能直接看到刚刚profile信息<br><img src="/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/profile1.png" alt="profile信息"></p>
+<p>切换菜单就能看到最常用的火焰图。<br><img src="/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/flame.png" alt="火焰图"></p>
+<h3 id="trace-查看"><a href="#trace-查看" class="headerlink" title="trace 查看"></a>trace 查看</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl &quot;http://127.0.0.1:10397/debug/pprof/trace?debug=1&amp;seconds=10&quot; &gt; t.out #获取远程trace文件</span><br><span class="line">go tool trace t.out #查看trace信息</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/trace1.png" alt="trace"><br><img src="/2023/01/21/Go%E4%BB%A3%E7%A0%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/trace2.png" alt="trace"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.zhangwenjin.com/2023/01/20/%E4%BD%BF%E7%94%A8hexo%E5%92%8Cgithub-%E6%90%AD%E5%BB%BA%E5%85%8D%E8%B4%B9blog%E7%B3%BB%E7%BB%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wenjin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wenjin's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/01/20/%E4%BD%BF%E7%94%A8hexo%E5%92%8Cgithub-%E6%90%AD%E5%BB%BA%E5%85%8D%E8%B4%B9blog%E7%B3%BB%E7%BB%9F/" class="post-title-link" itemprop="url">使用hexo和github page 搭建免费blog系统</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-01-20 16:24:27" itemprop="dateCreated datePublished" datetime="2023-01-20T16:24:27+08:00">2023-01-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-01-29 23:29:13" itemprop="dateModified" datetime="2023-01-29T23:29:13+08:00">2023-01-29</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>我的blog一直使用wordpress。服务器一直也蹭朋友的服务器。朋友的服务器终于要停服了。 我也需要为我很少更新blog找一个永不停服的服务器了。<br>最终选定方案为白嫖github page。 使用hexo创建静态的blog页面，然后通过github page免费发布，通过cloudflare CDN进行加加速。  </p>
+<h3 id="hexo-创建静态blog"><a href="#hexo-创建静态blog" class="headerlink" title="hexo 创建静态blog"></a>hexo 创建静态blog</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">yarn global add hexo-cli  #全局安装hexo</span><br><span class="line">mkdir blog &amp;&amp; cd blog #创建一个空目录</span><br><span class="line">hexo init #初始一个空项目</span><br><span class="line">yarn install #更新依赖</span><br><span class="line">hexo new &quot;使用hexo和github 搭建免费blog系统&quot; #创建一个新文章</span><br><span class="line">yarn server # 启动本地服务查看blog页面</span><br></pre></td></tr></table></figure>
+<h3 id="github-配置"><a href="#github-配置" class="headerlink" title="github 配置"></a>github 配置</h3><p>在github创建一个公开项目。将刚创建项目提交github。<br>在github action 创建hexo编译发布脚本。<br>创建 deploy， 脚本每次master有提交时进行编译，然后将编译结果提交到blog分支。代码如下：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># This is a basic workflow to help you get started with Actions</span></span><br><span class="line"></span><br><span class="line"><span class="attr">name:</span> <span class="string">Blog</span> <span class="string">deploy</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Controls when the workflow will run</span></span><br><span class="line"><span class="attr">on:</span></span><br><span class="line">  <span class="comment"># Triggers the workflow on push or pull request events but only for the main branch</span></span><br><span class="line">  <span class="attr">push:</span></span><br><span class="line">    <span class="attr">branches:</span> [ <span class="string">master</span> ]</span><br><span class="line"></span><br><span class="line">  <span class="comment"># Allows you to run this workflow manually from the Actions tab</span></span><br><span class="line">  <span class="attr">workflow_dispatch:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># A workflow run is made up of one or more jobs that can run sequentially or in parallel</span></span><br><span class="line"><span class="attr">jobs:</span></span><br><span class="line">  <span class="comment"># This workflow contains a single job called &quot;build&quot;</span></span><br><span class="line">  <span class="attr">build:</span></span><br><span class="line">    <span class="comment"># The type of runner that the job will run on</span></span><br><span class="line">    <span class="attr">runs-on:</span> <span class="string">ubuntu-latest</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Steps represent a sequence of tasks that will be executed as part of the job</span></span><br><span class="line">    <span class="attr">steps:</span></span><br><span class="line">      <span class="comment"># Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">uses:</span> <span class="string">actions/checkout@v3</span></span><br><span class="line"></span><br><span class="line">      <span class="comment"># Runs a set of commands using the runners shell</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Set</span> <span class="string">Node</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/setup-node@v3</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">node-version:</span> <span class="number">16</span></span><br><span class="line"></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Hexo</span> <span class="string">build</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          yarn install</span></span><br><span class="line"><span class="string">          yarn clean</span></span><br><span class="line"><span class="string">          yarn build</span></span><br><span class="line"><span class="string"></span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">blog</span> <span class="string">deploy</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">peaceiris/actions-gh-pages@v3</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">github_token:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.GITHUB_TOKEN</span> <span class="string">&#125;&#125;</span></span><br><span class="line">          <span class="attr">publish_dir:</span> <span class="string">./public</span></span><br><span class="line">          <span class="attr">publish_branch:</span> <span class="string">blog</span></span><br><span class="line">          <span class="attr">cname:</span> <span class="string">blog.zhangwenjin.com</span></span><br></pre></td></tr></table></figure>
+<h4 id="github-page配置"><a href="#github-page配置" class="headerlink" title="github page配置"></a>github page配置</h4><p>如图所示<br><img src="/images/github_page_setting.png" alt="img"></p>
+<h3 id="cloudflare-配置"><a href="#cloudflare-配置" class="headerlink" title="cloudflare 配置"></a>cloudflare 配置</h3><p>在DNS中开启 Proxied 即可<br>如果启用了https，需要在在ssl配置中启用full模式，即github负责申请https证书，cloudflare负责转发</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.zhangwenjin.com/2022/12/01/DOCKER-%E6%89%93%E5%8C%85PHP%E9%A1%B9%E7%9B%AE%E8%AE%B0%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wenjin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wenjin's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/12/01/DOCKER-%E6%89%93%E5%8C%85PHP%E9%A1%B9%E7%9B%AE%E8%AE%B0%E5%BD%95/" class="post-title-link" itemprop="url">DOCKER 打包PHP项目记录</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-12-01 23:40:55" itemprop="dateCreated datePublished" datetime="2022-12-01T23:40:55+08:00">2022-12-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-01-29 23:29:13" itemprop="dateModified" datetime="2023-01-29T23:29:13+08:00">2023-01-29</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>整个包只有70M，包含mysql和redis。<br>直接上dockerfile。</p>
+<figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> php:<span class="number">7.4</span>-fpm-alpine3.<span class="number">11</span></span><br><span class="line"><span class="keyword">ADD</span><span class="language-bash"> repositories /etc/apk/repositories</span></span><br><span class="line"><span class="keyword">ADD</span><span class="language-bash"> default.conf /</span></span><br><span class="line"><span class="keyword">ADD</span><span class="language-bash"> index.html /</span></span><br><span class="line"><span class="keyword">ADD</span><span class="language-bash"> run.sh /</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> apk update &amp;&amp; apk add nginx &amp;&amp; \</span></span><br><span class="line"><span class="language-bash">    apk add m4 autoconf make gcc g++ linux-headers &amp;&amp; \</span></span><br><span class="line"><span class="language-bash">    pecl install redis &amp;&amp; docker-php-ext-enable redis &amp;&amp; \</span></span><br><span class="line"><span class="language-bash">    docker-php-ext-install pdo_mysql opcache mysqli &amp;&amp; \</span></span><br><span class="line"><span class="language-bash">    <span class="built_in">mkdir</span> /run/nginx &amp;&amp; \</span></span><br><span class="line"><span class="language-bash">    <span class="built_in">mv</span> /default.conf /etc/nginx/conf.d &amp;&amp; \</span></span><br><span class="line"><span class="language-bash">    <span class="built_in">touch</span> /run/nginx/nginx.pid &amp;&amp; \</span></span><br><span class="line"><span class="language-bash">    <span class="built_in">chmod</span> 755 /run.sh &amp;&amp; \</span></span><br><span class="line"><span class="language-bash">    apk del m4 autoconf make gcc g++ linux-headers</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">80</span></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">9000</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">ENTRYPOINT</span><span class="language-bash"> [<span class="string">&quot;/run.sh&quot;</span>]</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.zhangwenjin.com/2022/06/27/PHP-%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wenjin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wenjin's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/06/27/PHP-%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" class="post-title-link" itemprop="url">PHP 实现一个简单消息队列</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-27 21:44:26" itemprop="dateCreated datePublished" datetime="2022-06-27T21:44:26+08:00">2022-06-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-01-29 23:29:13" itemprop="dateModified" datetime="2023-01-29T23:29:13+08:00">2023-01-29</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>直接上代码。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 任务列表</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">CREATE TABLE `t_job`  (</span></span><br><span class="line"><span class="comment">`job_id` int NOT NULL AUTO_INCREMENT COMMENT &#x27;任务id&#x27;,</span></span><br><span class="line"><span class="comment">`at` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT &#x27;任务执行时间&#x27;,</span></span><br><span class="line"><span class="comment">`status` tinyint NOT NULL DEFAULT 0 COMMENT &#x27;任务状态，0 默认 1 执行中 2执行成功 -2 执行失败&#x27;,</span></span><br><span class="line"><span class="comment">`lock_date` timestamp NULL COMMENT &#x27;任务锁定时间&#x27;,</span></span><br><span class="line"><span class="comment">`cost` float NULL COMMENT &#x27;任务执行耗时&#x27;,</span></span><br><span class="line"><span class="comment">`name` varchar(32) NOT NULL COMMENT &#x27;任务名称&#x27;,</span></span><br><span class="line"><span class="comment">`params` text NULL COMMENT &#x27;任务参数&#x27;,</span></span><br><span class="line"><span class="comment">`retry_cnt` int NULL COMMENT &#x27;任务重试次数&#x27;,</span></span><br><span class="line"><span class="comment">PRIMARY KEY (`job_id`)</span></span><br><span class="line"><span class="comment">) COMMENT = &#x27;任务信息&#x27;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">JobQueue</span> <span class="keyword">implements</span> <span class="title">Iterator</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="built_in">static</span> <span class="variable">$is_stop</span> = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$table_name</span> = <span class="string">&quot;t_job&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$SLEEP_TIME</span> = <span class="number">2</span>; <span class="comment">// 如果没有数据，间隔1s获取</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$job_id</span> = <span class="number">0</span>; <span class="comment">//任务id</span></span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$start_time</span> = <span class="number">0</span>; <span class="comment">//任务时间</span></span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$err</span> = <span class="string">&quot;&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 数据库名称</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$table_name</span> = <span class="string">&quot;&quot;</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="variable">$table_name</span>) &#123;</span><br><span class="line">            <span class="variable language_">$this</span>-&gt;table_name = <span class="variable">$table_name</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * first start, log start</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">rewind</span>(<span class="params"></span>): <span class="title">void</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">log</span>(<span class="string">&quot;start loop&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * return data, method, data</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">current</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$db</span> = <span class="title function_ invoke__">di_get</span>(<span class="string">&quot;db&quot;</span>);</span><br><span class="line">        <span class="variable">$sql</span> = <span class="title function_ invoke__">sprintf</span>(<span class="string">&#x27;SELECT *  FROM `%s` WHERE `job_id`=%s&#x27;</span>, <span class="variable">$this</span>-&gt;table_name, <span class="variable">$this</span>-&gt;job_id);</span><br><span class="line">        <span class="variable">$row</span> = <span class="variable">$db</span>-&gt;<span class="title function_ invoke__">getRow</span>(<span class="variable">$sql</span>);</span><br><span class="line">        <span class="variable">$row</span>[<span class="string">&#x27;params&#x27;</span>] = <span class="title function_ invoke__">json_decode</span>(<span class="variable">$row</span>[<span class="string">&#x27;params&#x27;</span>], <span class="literal">true</span>); <span class="comment">//解码</span></span><br><span class="line">        <span class="variable language_">$this</span>-&gt;start_time = <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">microtime_float</span>();</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;err = <span class="string">&quot;&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$row</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * return key, after current</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">key</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">$this</span>-&gt;job_id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 确认上一个任务完成，并记录时间和结果，如果需要重试，也这里处理</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">next</span>(<span class="params"></span>): <span class="title">void</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$db</span> = <span class="title function_ invoke__">di_get</span>(<span class="string">&quot;db&quot;</span>);</span><br><span class="line">        <span class="variable">$cost</span> = <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">microtime_float</span>() - <span class="variable language_">$this</span>-&gt;start_time; <span class="comment">//执行时间</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">empty</span>(<span class="variable language_">$this</span>-&gt;err)) &#123;</span><br><span class="line">            <span class="variable">$status</span> = <span class="number">2</span>; <span class="comment">//执行成功</span></span><br><span class="line">            <span class="variable">$sql</span> = <span class="title function_ invoke__">sprintf</span>(<span class="string">&quot;UPDATE `%s` SET cost=%s, status=2 WHERE `job_id`=%s&quot;</span>, <span class="variable">$this</span>-&gt;table_name, <span class="variable">$cost</span>, <span class="variable">$this</span>-&gt;job_id);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="title function_ invoke__">is_string</span>(<span class="variable">$this</span>-&gt;err)) &#123;</span><br><span class="line">                <span class="variable">$status</span> = -<span class="number">2</span>;</span><br><span class="line">                <span class="variable">$msg</span> = <span class="variable language_">$this</span>-&gt;err;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="variable">$status</span> = <span class="number">2</span>; <span class="comment">//执行成功</span></span><br><span class="line">                <span class="variable">$msg</span> = <span class="title function_ invoke__">json_encode</span>(<span class="variable">$this</span>-&gt;err);</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="variable">$sql</span> = <span class="title function_ invoke__">sprintf</span>(<span class="string">&quot;UPDATE `%s` SET `cost`=%s, `status`=%s, `msg`=&#x27;%s&#x27; WHERE `job_id`=%s&quot;</span>, <span class="variable">$this</span>-&gt;table_name, <span class="variable">$cost</span>, <span class="variable">$status</span>, <span class="variable">$msg</span>, <span class="variable">$this</span>-&gt;job_id);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="variable">$db</span>-&gt;<span class="title function_ invoke__">query</span>(<span class="variable">$sql</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取一个项目，如果没有等等</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">valid</span>(<span class="params"></span>): <span class="title">bool</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$db</span> = <span class="title function_ invoke__">di_get</span>(<span class="string">&quot;db&quot;</span>);</span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">            <span class="variable">$sql</span> = <span class="title function_ invoke__">sprintf</span>(<span class="string">&quot;SELECT `job_id` FROM `%s` WHERE status=0 AND `at`&lt;=current_timestamp ORDER BY `job_id` ASC LIMIT 1&quot;</span>, <span class="variable">$this</span>-&gt;table_name);</span><br><span class="line">            <span class="variable">$row</span> = <span class="variable">$db</span>-&gt;<span class="title function_ invoke__">getRow</span>(<span class="variable">$sql</span>);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (!<span class="variable">$row</span>) &#123;</span><br><span class="line">                <span class="title function_ invoke__">sleep</span>(<span class="variable">$this</span>-&gt;SLEEP_TIME);</span><br><span class="line">                <span class="keyword">continue</span>; <span class="comment">//等待后看是否有消息</span></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="variable">$job_id</span> = <span class="variable">$row</span>[<span class="string">&#x27;job_id&#x27;</span>];</span><br><span class="line">            <span class="comment">//lock</span></span><br><span class="line">            <span class="variable">$sql</span> = <span class="title function_ invoke__">sprintf</span>(<span class="string">&quot;UPDATE %s SET status=1, lock_date=current_timestamp WHERE status=0 AND `job_id`=%s&quot;</span>, <span class="variable">$this</span>-&gt;table_name, <span class="variable">$row</span>[<span class="string">&#x27;job_id&#x27;</span>]);</span><br><span class="line">            <span class="variable">$sth</span> = <span class="variable">$db</span>-&gt;<span class="title function_ invoke__">query</span>(<span class="variable">$sql</span>);</span><br><span class="line">            <span class="variable">$n</span> = <span class="variable">$sth</span>-&gt;<span class="title function_ invoke__">rowCount</span>();</span><br><span class="line">            <span class="keyword">if</span> (<span class="variable">$n</span> == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">continue</span>; <span class="comment">//当前记录已经被其他进程锁定，重新获取</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="variable language_">$this</span>-&gt;job_id = <span class="variable">$job_id</span>;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>; <span class="comment">//开始获取数据</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">log</span>(<span class="params"><span class="variable">$data</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$buf</span> = <span class="variable">$data</span>;</span><br><span class="line">        <span class="keyword">if</span> (!<span class="title function_ invoke__">is_string</span>(<span class="variable">$data</span>)) &#123;</span><br><span class="line">            <span class="variable">$buf</span> = <span class="title function_ invoke__">json_encode</span>(<span class="variable">$data</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="variable">$debug_info</span> = <span class="title function_ invoke__">debug_backtrace</span>();</span><br><span class="line">        <span class="comment">//var_dump($debug_info);</span></span><br><span class="line">        <span class="variable">$file_path</span> = <span class="variable">$debug_info</span>[<span class="number">0</span>][<span class="string">&#x27;file&#x27;</span>];</span><br><span class="line">        <span class="variable">$line_no</span> = <span class="variable">$debug_info</span>[<span class="number">0</span>][<span class="string">&#x27;line&#x27;</span>];</span><br><span class="line">        <span class="comment">//$file_path = substr($file_path, strlen(APP_PATH));</span></span><br><span class="line"></span><br><span class="line">        <span class="variable">$buf</span> = <span class="title function_ invoke__">sprintf</span>(<span class="string">&quot;%s %s:%s %s\n&quot;</span>, <span class="title function_ invoke__">date</span>(<span class="string">&quot;H:i:s&quot;</span>), <span class="variable">$file_path</span>, <span class="variable">$line_no</span>, <span class="variable">$buf</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">echo</span> (<span class="variable">$buf</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取时间戳</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">microtime_float</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">list</span>(<span class="variable">$usec</span>, <span class="variable">$sec</span>) = <span class="title function_ invoke__">explode</span>(<span class="string">&quot; &quot;</span>, <span class="title function_ invoke__">microtime</span>());</span><br><span class="line">        <span class="keyword">return</span> ((<span class="keyword">float</span>) <span class="variable">$usec</span> + (<span class="keyword">float</span>) <span class="variable">$sec</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 增加任务</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@params</span> afert 多久后执行,单位s</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params"><span class="variable">$name</span>, <span class="variable">$params</span>, <span class="keyword">int</span> <span class="variable">$afert</span> = <span class="number">0</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$db</span> = <span class="title function_ invoke__">di_get</span>(<span class="string">&quot;db&quot;</span>);</span><br><span class="line">        <span class="variable">$buf</span> = <span class="title function_ invoke__">json_encode</span>(<span class="variable">$params</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (<span class="variable">$afert</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="variable">$sql</span> = <span class="title function_ invoke__">sprintf</span>(<span class="string">&quot;INSERT INTO `%s` SET `at`= date_add(current_timestamp, interval %s second) , `name` = &#x27;%s&#x27;, `params`=&#x27;%s&#x27;&quot;</span>, <span class="variable">$this</span>-&gt;table_name, <span class="variable">$afert</span>, <span class="variable">$name</span>, <span class="variable">$buf</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="variable">$sql</span> = <span class="title function_ invoke__">sprintf</span>(<span class="string">&quot;INSERT INTO `%s` SET `at`= current_timestamp,  `name` = &#x27;%s&#x27;, `params`=&#x27;%s&#x27;&quot;</span>, <span class="variable">$this</span>-&gt;table_name, <span class="variable">$name</span>, <span class="variable">$buf</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="variable">$db</span>-&gt;<span class="title function_ invoke__">query</span>(<span class="variable">$sql</span>);</span><br><span class="line">        <span class="variable">$job_id</span> = <span class="variable">$db</span>-&gt;<span class="title function_ invoke__">lastInsertId</span>();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$job_id</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 增加唯一任务，如果当前任务已经存在，不在添加</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">add_unique</span>(<span class="params"><span class="variable">$name</span>, <span class="variable">$params</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$db</span> = <span class="title function_ invoke__">di_get</span>(<span class="string">&quot;db&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="variable">$sql</span> = <span class="title function_ invoke__">sprintf</span>(<span class="string">&quot;SELECT name FROM `%s` WHERE `status` = 0 AND `name` =&#x27;%s&#x27;&quot;</span>, <span class="variable">$this</span>-&gt;table_name, <span class="variable">$name</span>);</span><br><span class="line">        <span class="variable">$row</span> = <span class="variable">$db</span>-&gt;<span class="title function_ invoke__">getRow</span>(<span class="variable">$sql</span>);</span><br><span class="line">        <span class="keyword">if</span> (<span class="variable">$row</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>; <span class="comment">//不在添加</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">add</span>(<span class="variable">$name</span>, <span class="variable">$params</span>, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 确认任务信息</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">done</span>(<span class="params"><span class="variable">$err</span> = <span class="string">&quot;&quot;</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;err = <span class="variable">$err</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 重新</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">retry</span>(<span class="params"><span class="keyword">int</span> <span class="variable">$after</span> = <span class="number">0</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$db</span> = <span class="title function_ invoke__">di_get</span>(<span class="string">&quot;db&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (<span class="variable">$after</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="variable">$sql</span> = <span class="title function_ invoke__">sprintf</span>(<span class="string">&quot;UPDATE `%s` SET `at`=date_add(current_timestamp, interval %s second), `status`=0, `retry_cnt` =`retry_cnt` + 1  WHERE `job_id`=%s&quot;</span>, <span class="variable">$this</span>-&gt;table_name, <span class="variable">$after</span>, <span class="variable">$this</span>-&gt;job_id);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="variable">$sql</span> = <span class="title function_ invoke__">sprintf</span>(<span class="string">&quot;UPDATE `%s` SET `at`=current_timestamp, `status`=0, `retry_cnt` =`retry_cnt` + 1  WHERE `job_id`=%s&quot;</span>, <span class="variable">$this</span>-&gt;table_name, <span class="variable">$this</span>-&gt;job_id);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="variable">$db</span>-&gt;<span class="title function_ invoke__">query</span>(<span class="variable">$sql</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取未完成的</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">count</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$db</span> = <span class="title function_ invoke__">di_get</span>(<span class="string">&quot;db&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="variable">$sql</span> = <span class="title function_ invoke__">sprintf</span>(<span class="string">&quot;SELECT COUNT(*) FROM `%s` WHERE status=0&quot;</span>, <span class="variable">$this</span>-&gt;table_name);</span><br><span class="line">        <span class="keyword">return</span> <span class="title function_ invoke__">intval</span>(<span class="variable">$db</span>-&gt;<span class="title function_ invoke__">getOne</span>(<span class="variable">$sql</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.zhangwenjin.com/2022/05/18/Mysql-%E8%A7%A6%E5%8F%91%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wenjin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wenjin's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/18/Mysql-%E8%A7%A6%E5%8F%91%E5%99%A8/" class="post-title-link" itemprop="url">Mysql 触发器</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-18 21:19:26" itemprop="dateCreated datePublished" datetime="2022-05-18T21:19:26+08:00">2022-05-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-01-29 23:29:13" itemprop="dateModified" datetime="2023-01-29T23:29:13+08:00">2023-01-29</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>公司一个业务的Mysql user表总是莫名被修改。项目太老懒得去找具体原因了。<br>最终觉得偷懒使用mysql触发器，将所有user表的改动记录到一个user_log表，如果用户信息被修改，通过查询user_log就能帮用户数据恢复为以前版本。</p>
+<p>具体操作如下：  </p>
+<ol>
+<li><p>创建user_log 表</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE `t_user_log` (</span><br><span class="line">  `lid` int(11) unsigned NOT NULL AUTO_INCREMENT,</span><br><span class="line">  `account_id` varchar(64) DEFAULT NULL,</span><br><span class="line">  `id_shows` text,</span><br><span class="line">  `cdate` datetime DEFAULT NULL,</span><br><span class="line">  PRIMARY KEY (`lid`),</span><br><span class="line">  KEY `account_id` (`account_id`)</span><br><span class="line">) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建user表insert触发器</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">DELIMITER //</span><br><span class="line">CREATE TRIGGER add_user</span><br><span class="line">AFTER INSERT</span><br><span class="line">ON t_users</span><br><span class="line">FOR EACH ROW</span><br><span class="line">    Insert into t_user_log(account_id, id_shows, cdate) VALUES(NEW.account_id, NEW.id_shows,NOW()) //</span><br><span class="line">DELIMITER ;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建user表update触发器</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">DELIMITER //</span><br><span class="line">CREATE TRIGGER update_user</span><br><span class="line">AFTER UPDATE</span><br><span class="line">ON t_users</span><br><span class="line">FOR EACH ROW</span><br><span class="line"> BEGIN</span><br><span class="line">    IF NEW.id_shows != OLD.id_shows THEN</span><br><span class="line">        Insert into t_user_log(account_id, id_shows, cdate) VALUES(NEW.account_id, NEW.id_shows,NOW());</span><br><span class="line">    END IF;</span><br><span class="line"> END//</span><br><span class="line">DELIMITER ;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<blockquote>
+<p>查询所有触发器<br>SHOW TRIGGERS;</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.zhangwenjin.com/2015/12/23/centos-%E9%85%8D%E7%BD%AE%E8%93%9D%E7%89%99%E5%85%B1%E4%BA%AB%E7%BD%91%E7%BB%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wenjin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wenjin's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2015/12/23/centos-%E9%85%8D%E7%BD%AE%E8%93%9D%E7%89%99%E5%85%B1%E4%BA%AB%E7%BD%91%E7%BB%9C/" class="post-title-link" itemprop="url">centos 配置蓝牙共享网络</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2015-12-23 12:18:40" itemprop="dateCreated datePublished" datetime="2015-12-23T12:18:40+08:00">2015-12-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-01-29 23:29:13" itemprop="dateModified" datetime="2023-01-29T23:29:13+08:00">2023-01-29</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>安装centos蓝牙库：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install bluez.x86_64 bluez-compat.x86_64</span><br></pre></td></tr></table></figure>
+<p>安装蓝牙认证库:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install pygobject2 dbus-python-devel.x86_64 dbus-python</span><br></pre></td></tr></table></figure>
+<p>配置dhcpd：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/dhcp/dhcpd.conf</span><br><span class="line"></span><br><span class="line">ignore client-updates;</span><br><span class="line"></span><br><span class="line">subnet 10.0.0.0 netmask 255.255.255.0 &#123;</span><br><span class="line">    option routers      10.0.0.1;</span><br><span class="line">    option subnet-mask  255.255.255.0;</span><br><span class="line">    option domain-name-servers 10.16.0.222;</span><br><span class="line"></span><br><span class="line">    range dynamic-bootp 10.0.0.10 10.0.0.50;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上网设置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">brctl addbr pan1</span><br><span class="line">brctl stp pan1 off</span><br><span class="line">echo &quot;1&quot;&gt;/proc/sys/net/ipv4/ip_forward</span><br><span class="line">ifconfig pan1 10.0.0.1/24</span><br><span class="line">iptables -A POSTROUTING -s 10.0.0.0/24 -j MASQUERADE</span><br><span class="line">#iptables -D FORWARD 1</span><br><span class="line">#watch -n 1 iptables  -L -n -v</span><br><span class="line">/etc/init.d/dhcpd restart</span><br><span class="line"></span><br><span class="line">hciconfig hci0 up piscan</span><br><span class="line">modprobe bnep</span><br><span class="line">pand --listen --role NAP --master</span><br><span class="line">nohup python /root/src/simple-agent.py &gt; /tmp/blue-agent.log 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.zhangwenjin.com/2015/11/25/%E9%98%BF%E9%87%8C%E4%BA%91gre%E6%A8%A1%E5%BC%8F%E7%BB%84%E7%BD%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wenjin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wenjin's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2015/11/25/%E9%98%BF%E9%87%8C%E4%BA%91gre%E6%A8%A1%E5%BC%8F%E7%BB%84%E7%BD%91/" class="post-title-link" itemprop="url">阿里云gre模式组网</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2015-11-25 12:16:45" itemprop="dateCreated datePublished" datetime="2015-11-25T12:16:45+08:00">2015-11-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-01-29 23:29:13" itemprop="dateModified" datetime="2023-01-29T23:29:13+08:00">2023-01-29</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>问题：公司租用多台阿里云主机，只有1台对外服务，其他服务器只能访问内网。内网机器偶尔需要访问外网，但又不希望开通外网访问权限。<br>解决方案：将阿里云服务器重新组建一个虚拟局域网，有外网权限的服务器做为网关，其他内网服务器通过网关就能访问外部网络。  </p>
+<p>穿透阿里的内网可选用ipip tunnel 或者gre模式，本文选用通用性比较好的gre模式。  </p>
+<p>外网机器：<br>a. 打开ipv4转发：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo 1 &gt; /proc/sys/net/ipv4/ip_forward</span><br></pre></td></tr></table></figure>
+<p>b. 增加转发规则：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -t nat -A POSTROUTING -s 192.168.122.0/24 ! -d 192.168.122.0/24 -j MASQUERADE</span><br></pre></td></tr></table></figure>
+<p>c. 建立内网隧道：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">modprobe ip_gre  #加载gre内核模块</span><br><span class="line">ip tunnel add gre3 mode gre remote 10.10.10.3 local 10.10.10.2  ttl 64  #建立隧道</span><br><span class="line">ip link set gre3 up #启动虚拟网卡</span><br><span class="line">ip addr add 192.168.122.2 peer 192.168.122.3 dev gre3 #设定路由</span><br></pre></td></tr></table></figure>
+<p>内网需要上网机器：<br>a. 建立隧道</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">modprobe ip_gre  #加载gre内核模块</span><br><span class="line">ip tunnel add gre1 mode gre remote 10.10.10.2 local 10.10.10.3  ttl 64  #建立隧道</span><br><span class="line">ip link set gre1 up #启动虚拟网卡</span><br><span class="line">ip addr add 192.168.122.3 peer 192.168.122.2 dev gre1 #设定路由</span><br></pre></td></tr></table></figure>
+<p>b. 设定默认路由</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">route del default</span><br><span class="line">route add default gw 192.168.122.2</span><br></pre></td></tr></table></figure>
+<p>ps停用隧道方式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ip link set gre1 down</span><br><span class="line">ip tunnel del gre1</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.zhangwenjin.com/2015/11/17/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wenjin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wenjin's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2015/11/17/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">服务器运维相关总结</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2015-11-17 12:13:16" itemprop="dateCreated datePublished" datetime="2015-11-17T12:13:16+08:00">2015-11-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-01-29 23:29:13" itemprop="dateModified" datetime="2023-01-29T23:29:13+08:00">2023-01-29</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li>rsyncd 服务搭建</li>
+</ol>
+<ul>
+<li>vim &#x2F;etc&#x2F;rsyncd.conf 配置文件内容<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">uid = root                         </span><br><span class="line">gid = root                                  </span><br><span class="line">use chroot = no                     </span><br><span class="line">read only = yes                            </span><br><span class="line"></span><br><span class="line">#limit access to private LANs</span><br><span class="line">hosts allow=10.10.1.2,10.10.1.3</span><br><span class="line">hosts deny=*                                </span><br><span class="line">max connections = 5                      </span><br><span class="line"></span><br><span class="line">pid file = /var/run/rsyncd.pid             </span><br><span class="line"></span><br><span class="line">#This will give you a separate log file</span><br><span class="line">log file = /opt/logs/rsync.log               </span><br><span class="line"></span><br><span class="line">#This will log every file transferred - up to 85,000+ per user, per sync</span><br><span class="line">transfer logging = yes                    </span><br><span class="line"></span><br><span class="line">log format = %t %a %m %f %b</span><br><span class="line">syslog facility = local3</span><br><span class="line">timeout = 300</span><br><span class="line"></span><br><span class="line"># MODULE OPTIONS</span><br><span class="line">[test]                               </span><br><span class="line">path = /opt/test                      </span><br><span class="line">list=yes                                   </span><br><span class="line">ignore errors                              </span><br><span class="line">comment = test                 </span><br><span class="line">exclude = .svn</span><br></pre></td></tr></table></figure></li>
+<li>启动服务rsync 服务<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">killall rsync;/usr/bin/rsync --daemon</span><br></pre></td></tr></table></figure></li>
+<li>客户端同步<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rsync -avzP rsync://10.132.35.216/test /opt/test</span><br></pre></td></tr></table></figure></li>
+</ul>
+<ol start="2">
+<li>配置http代理(使用epel源)<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">yum install 3proxy</span><br><span class="line">a. vim /etc/3proxy.cfg</span><br><span class="line">nscache 1000</span><br><span class="line">timeouts 1 5 30 60 180 1800 15 60</span><br><span class="line"></span><br><span class="line">daemon</span><br><span class="line">log /opt/logs/3proxy.log D</span><br><span class="line">logformat &quot;- +_L%t.%.  %N.%p %E %U %C:%c %R:%r %O %I %h %T&quot;</span><br><span class="line">rotate 2</span><br><span class="line"> </span><br><span class="line">auth iponly</span><br><span class="line">allow * 10.10.0.0/16 * *</span><br><span class="line">proxy -n -a -p6666</span><br></pre></td></tr></table></figure></li>
+<li>客户端启用http代理</li>
+</ol>
+<ul>
+<li>wget 等代理<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export http_proxy=http://10.10.1.2:6666</span><br></pre></td></tr></table></figure></li>
+<li>yum 启用http代理 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/yum.conf</span><br><span class="line"></span><br><span class="line">[main]</span><br><span class="line">proxy=http://10.10.1.2:6666</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.zhangwenjin.com/2015/10/16/https-%E8%87%AA%E7%AD%BE%E5%90%8D%E8%AF%81%E4%B9%A6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wenjin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wenjin's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2015/10/16/https-%E8%87%AA%E7%AD%BE%E5%90%8D%E8%AF%81%E4%B9%A6/" class="post-title-link" itemprop="url">https 自签名证书</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2015-10-16 12:11:08" itemprop="dateCreated datePublished" datetime="2015-10-16T12:11:08+08:00">2015-10-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-01-29 23:29:13" itemprop="dateModified" datetime="2023-01-29T23:29:13+08:00">2023-01-29</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>公司需要将外网接口全部改为https方式，保证客户端数据传输的安全。并且将客户端连接改为长连接，这样能同时保证传输效率。客户端是自己的代码，所以使用自己的签名就行。  </p>
+<h3 id="https自签名步骤："><a href="#https自签名步骤：" class="headerlink" title="https自签名步骤："></a>https自签名步骤：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">openssl genrsa -des3 -out server.orig.key 2048 ＃生成密钥</span><br><span class="line">openssl rsa -in server.orig.key -out server.key #去除密钥中的密码</span><br><span class="line">openssl req -new -subj &quot;/C=CN/ST=Beijing/L=Beijing/O=Beijing/OU=wefit/CN=*.wefit.com.cn&quot; -key server.key -out server.csr #生成公钥</span><br><span class="line">openssl x509 -req -days 36500 -in server.csr -signkey server.key -out server.crt #公钥签名生成证书</span><br></pre></td></tr></table></figure>
+<p>证书签名可选配置(可以不选，这里列出只是备注下)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[req]</span><br><span class="line">req_extensions = v3_req</span><br><span class="line"></span><br><span class="line">distinguished_name = req_distinguished_name</span><br><span class="line"></span><br><span class="line">[req_distinguished_name]</span><br><span class="line"></span><br><span class="line">[ v3_req ]</span><br><span class="line"></span><br><span class="line"># Extensions to add to a certificate request</span><br><span class="line"></span><br><span class="line">basicConstraints = CA:FALSE</span><br><span class="line">keyUsage = nonRepudiation, digitalSignature, keyEncipherment</span><br><span class="line">subjectAltName = @alt_names</span><br><span class="line"></span><br><span class="line">[alt_names]</span><br><span class="line">DNS.1 = *.wefit.com.cn</span><br></pre></td></tr></table></figure>
+
+<p>nginx 配置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">listen 443 ssl;</span><br><span class="line">ssl_certificate /opt/ca/server.crt;</span><br><span class="line">ssl_certificate_key /opt/ca/server.key;</span><br></pre></td></tr></table></figure>
+<p>一切ok。客户端长连接略过。强烈推荐python urllib3模块</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.zhangwenjin.com/2015/10/12/nginx-%E7%BB%9F%E8%AE%A1%E8%AF%B7%E6%B1%82%E6%95%B0%E6%A8%A1%E5%9D%97ngx-req-status/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wenjin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wenjin's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2015/10/12/nginx-%E7%BB%9F%E8%AE%A1%E8%AF%B7%E6%B1%82%E6%95%B0%E6%A8%A1%E5%9D%97ngx-req-status/" class="post-title-link" itemprop="url">nginx 统计请求数模块ngx_req_status</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2015-10-12 12:08:14" itemprop="dateCreated datePublished" datetime="2015-10-12T12:08:14+08:00">2015-10-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-01-29 23:29:13" itemprop="dateModified" datetime="2023-01-29T23:29:13+08:00">2023-01-29</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>公司服务器需要监控网站页面请求。<br>使用nginx的ngx_req_status模块刚好能满足需求。<br>请求结果如下：  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">zone_name key max_active max_bw traffic requests active bandwidth</span><br><span class="line">server_name localhost 2 0 4160 4 1 0</span><br><span class="line">server_url localhost/ 2 0 1432 2 0 0</span><br><span class="line">server_url localhost/req-status 1 0 2728 2 1 0</span><br></pre></td></tr></table></figure>
+<p>可以显示每个url pv, 活跃连接数等等。<br>安装方法如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">wget http://nginx.org/download/nginx-1.8.0.tar.gz</span><br><span class="line">git clone https://github.com/zls0424/ngx_req_status.git</span><br><span class="line">tar -zxvf nginx-1.8.0.tar.gz </span><br><span class="line">cd nginx-1.8.0</span><br><span class="line">patch -p1 &lt; /home/zhangwenjin/src/ngx_req_status/write_filter-1.7.11.patch</span><br><span class="line">./configure --prefix=/usr/local/nginx --add-module=/home/zhangwenjin/src/ngx_req_status</span><br><span class="line">make -j2</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
+<p>nginx配置如下：<br>http配置：  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">req_status_zone server_name $server_name 256k;</span><br><span class="line">req_status_zone server_url  $server_name$request_uri$query_string 256k;</span><br><span class="line">req_status server_name  server_url;</span><br></pre></td></tr></table></figure>
+<p>server配置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">location /req-status &#123;</span><br><span class="line">    req_status_show on;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
   </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-        <!--
-       --><li><a href="/">首页</a></li><!--
-     --><!--
-       --><li><a href="/search/">搜索</a></li><!--
-     --><!--
-       --><li><a href="/archives/">归档</a></li><!--
-     -->
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
       </ul>
-    </nav>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Wenjin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/wjzhangq" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;wjzhangq" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:blog@zhangwenjin.com" title="E-Mail → mailto:blog@zhangwenjin.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
   </div>
-</footer>
+
+
+
+      </div>
 
     </div>
-    <!-- styles -->
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wenjin</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
 
 
 
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
-
-
-    <!-- jquery -->
- 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
 
 
 
 
-<!-- clipboard -->
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
 
 
-<script src="/js/main.js"></script>
+<script src="/js/schemes/muse.js"></script>
 
-<!-- search -->
 
-<!-- Google Analytics -->
+<script src="/js/next-boot.js"></script>
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1876477-2"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-1876477-2');
-    </script>
 
-<!-- Baidu Analytics -->
 
-<!-- Cloudflare Analytics -->
 
-<!-- Umami Analytics -->
+  
 
-<!-- Disqus Comments -->
 
-<!-- utterances Comments -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
 
 </body>
 </html>
