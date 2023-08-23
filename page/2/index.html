@@ -150,6 +150,78 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.zhangwenjin.com/2015/10/16/https-%E8%87%AA%E7%AD%BE%E5%90%8D%E8%AF%81%E4%B9%A6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wenjin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wenjin's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2015/10/16/https-%E8%87%AA%E7%AD%BE%E5%90%8D%E8%AF%81%E4%B9%A6/" class="post-title-link" itemprop="url">https 自签名证书</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2015-10-16 12:11:08" itemprop="dateCreated datePublished" datetime="2015-10-16T12:11:08+08:00">2015-10-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-08-23 17:59:23" itemprop="dateModified" datetime="2023-08-23T17:59:23+08:00">2023-08-23</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>公司需要将外网接口全部改为https方式，保证客户端数据传输的安全。并且将客户端连接改为长连接，这样能同时保证传输效率。客户端是自己的代码，所以使用自己的签名就行。  </p>
+<h3 id="https自签名步骤："><a href="#https自签名步骤：" class="headerlink" title="https自签名步骤："></a>https自签名步骤：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">openssl genrsa -des3 -out server.orig.key 2048 ＃生成密钥</span><br><span class="line">openssl rsa -in server.orig.key -out server.key #去除密钥中的密码</span><br><span class="line">openssl req -new -subj &quot;/C=CN/ST=Beijing/L=Beijing/O=Beijing/OU=wefit/CN=*.wefit.com.cn&quot; -key server.key -out server.csr #生成公钥</span><br><span class="line">openssl x509 -req -days 36500 -in server.csr -signkey server.key -out server.crt #公钥签名生成证书</span><br></pre></td></tr></table></figure>
+<p>证书签名可选配置(可以不选，这里列出只是备注下)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[req]</span><br><span class="line">req_extensions = v3_req</span><br><span class="line"></span><br><span class="line">distinguished_name = req_distinguished_name</span><br><span class="line"></span><br><span class="line">[req_distinguished_name]</span><br><span class="line"></span><br><span class="line">[ v3_req ]</span><br><span class="line"></span><br><span class="line"># Extensions to add to a certificate request</span><br><span class="line"></span><br><span class="line">basicConstraints = CA:FALSE</span><br><span class="line">keyUsage = nonRepudiation, digitalSignature, keyEncipherment</span><br><span class="line">subjectAltName = @alt_names</span><br><span class="line"></span><br><span class="line">[alt_names]</span><br><span class="line">DNS.1 = *.wefit.com.cn</span><br></pre></td></tr></table></figure>
+
+<p>nginx 配置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">listen 443 ssl;</span><br><span class="line">ssl_certificate /opt/ca/server.crt;</span><br><span class="line">ssl_certificate_key /opt/ca/server.key;</span><br></pre></td></tr></table></figure>
+<p>一切ok。客户端长连接略过。强烈推荐python urllib3模块</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://blog.zhangwenjin.com/2015/10/12/nginx-%E7%BB%9F%E8%AE%A1%E8%AF%B7%E6%B1%82%E6%95%B0%E6%A8%A1%E5%9D%97ngx-req-status/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -181,7 +253,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-03-04 21:27:41" itemprop="dateModified" datetime="2023-03-04T21:27:41+08:00">2023-03-04</time>
+                <time title="修改时间：2023-08-23 17:59:23" itemprop="dateModified" datetime="2023-08-23T17:59:23+08:00">2023-08-23</time>
               </span>
 
           
@@ -252,7 +324,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-03-04 21:27:41" itemprop="dateModified" datetime="2023-03-04T21:27:41+08:00">2023-03-04</time>
+                <time title="修改时间：2023-08-23 17:59:23" itemprop="dateModified" datetime="2023-08-23T17:59:23+08:00">2023-08-23</time>
               </span>
 
           
@@ -327,7 +399,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-03-04 21:27:41" itemprop="dateModified" datetime="2023-03-04T21:27:41+08:00">2023-03-04</time>
+                <time title="修改时间：2023-08-23 17:59:23" itemprop="dateModified" datetime="2023-08-23T17:59:23+08:00">2023-08-23</time>
               </span>
 
           
@@ -396,7 +468,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-03-04 21:27:41" itemprop="dateModified" datetime="2023-03-04T21:27:41+08:00">2023-03-04</time>
+                <time title="修改时间：2023-08-23 17:59:23" itemprop="dateModified" datetime="2023-08-23T17:59:23+08:00">2023-08-23</time>
               </span>
 
           
@@ -483,7 +555,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-03-04 21:27:41" itemprop="dateModified" datetime="2023-03-04T21:27:41+08:00">2023-03-04</time>
+                <time title="修改时间：2023-08-23 17:59:23" itemprop="dateModified" datetime="2023-08-23T17:59:23+08:00">2023-08-23</time>
               </span>
 
           
@@ -566,7 +638,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-03-04 21:27:41" itemprop="dateModified" datetime="2023-03-04T21:27:41+08:00">2023-03-04</time>
+                <time title="修改时间：2023-08-23 17:59:23" itemprop="dateModified" datetime="2023-08-23T17:59:23+08:00">2023-08-23</time>
               </span>
 
           
@@ -652,7 +724,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-03-04 21:27:41" itemprop="dateModified" datetime="2023-03-04T21:27:41+08:00">2023-03-04</time>
+                <time title="修改时间：2023-08-23 17:59:23" itemprop="dateModified" datetime="2023-08-23T17:59:23+08:00">2023-08-23</time>
               </span>
 
           
@@ -720,7 +792,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-03-04 21:27:41" itemprop="dateModified" datetime="2023-03-04T21:27:41+08:00">2023-03-04</time>
+                <time title="修改时间：2023-08-23 17:59:23" itemprop="dateModified" datetime="2023-08-23T17:59:23+08:00">2023-08-23</time>
               </span>
 
           
@@ -814,7 +886,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-03-04 21:27:41" itemprop="dateModified" datetime="2023-03-04T21:27:41+08:00">2023-03-04</time>
+                <time title="修改时间：2023-08-23 17:59:23" itemprop="dateModified" datetime="2023-08-23T17:59:23+08:00">2023-08-23</time>
               </span>
 
           
@@ -852,95 +924,6 @@
 <blockquote>
 <p>Centos 7安装lxc需要先安装EPEL源，默认的yum源没有lxc<br>Mac Mini需要恢复OSX系统，需要通过网络安装恢复，方法开机按 alt键，到选择界面 按cmd + r即可，非常容易</p>
 </blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.zhangwenjin.com/2014/08/17/rpm%E5%8C%85%E5%88%B6%E4%BD%9C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Wenjin">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wenjin's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2014/08/17/rpm%E5%8C%85%E5%88%B6%E4%BD%9C/" class="post-title-link" itemprop="url">rpm包制作</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2014-08-17 11:30:55" itemprop="dateCreated datePublished" datetime="2014-08-17T11:30:55+08:00">2014-08-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-03-04 21:27:41" itemprop="dateModified" datetime="2023-03-04T21:27:41+08:00">2023-03-04</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li><p>设置打包目录<br>a) 查看当前设置：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpmbuild --showrc | grep topdir</span><br></pre></td></tr></table></figure>
-<p>b) 设置目录：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.rpmmacros</span><br><span class="line"><span class="meta prompt_">%</span><span class="language-bash">_topdir /root/src/rpmbuild</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash"><span class="built_in">mkdir</span> rpmbuild</span></span><br><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash"><span class="built_in">cd</span> ./rpmbuild</span></span><br><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash"><span class="built_in">mkdir</span> -pv &#123;BUILD,BUILDROOT,RPMS,SOURCES,SPECS,SRPMS&#125;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>拷贝源代码source 目录</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash"><span class="built_in">cp</span>  /root/src/tengine-2.0.3.tar.gz SOURCES/</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>建立spec文件</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash"><span class="built_in">cd</span> SPECS</span></span><br><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash">vim tengine-2.0.3.spec</span></span><br><span class="line">Name: tengine</span><br><span class="line">Version: 2.0.3</span><br><span class="line">Release: 1%&#123;?dist&#125;</span><br><span class="line">Summary: tengine from Taobao</span><br><span class="line"></span><br><span class="line">Group: System Environment/Daemons</span><br><span class="line">License: GPLv2</span><br><span class="line">URL: http://blog.zhangwenjin.com</span><br><span class="line">Source0: %&#123;name&#125;-%&#123;version&#125;.tar.gz</span><br><span class="line">BuildRoot: %(mktemp -ud %&#123;_tmppath&#125;/%&#123;name&#125;-%&#123;version&#125;-%&#123;release&#125;-XXXXXX)</span><br><span class="line"></span><br><span class="line">BuildRequires: gcc,make</span><br><span class="line">Requires: openssl,pcre,pcre-devel,lua,lua-devel</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">%</span><span class="language-bash">description</span></span><br><span class="line">It is a Nginx from Taobao.</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">%</span><span class="language-bash">prep</span></span><br><span class="line"><span class="meta prompt_">%</span><span class="language-bash">setup -q</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">%</span><span class="language-bash">build</span></span><br><span class="line">./configure --with-http_lua_module --with-pcre --user=nginx --group=nginx</span><br><span class="line">make %&#123;?_smp_mflags&#125;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">%</span><span class="language-bash">install</span></span><br><span class="line">rm -rf %&#123;buildroot&#125;</span><br><span class="line">make install DESTDIR=%&#123;buildroot&#125;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">%</span><span class="language-bash">clean</span></span><br><span class="line">rm -rf %&#123;buildroot&#125;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">%</span><span class="language-bash">files</span></span><br><span class="line"><span class="meta prompt_">%</span><span class="language-bash">defattr(-,root,root,-)</span></span><br><span class="line"><span class="meta prompt_">%</span><span class="language-bash">doc</span></span><br></pre></td></tr></table></figure></li>
-<li><p>rpmbuild 打包</p>
-</li>
-</ol>
-<p>rpmbuild </p>
-<ul>
-<li>-ba 既生成src.rpm又生成二进制rpm </li>
-<li>-bs 只生成src的rpm </li>
-<li>-bb 只生二进制的rpm </li>
-<li>-bp 执行到pre </li>
-<li>-bc 执行到 build段 </li>
-<li>-bi 执行install段 </li>
-<li>-bl 检测有文件没包含</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash">rpmbuild -bb tengine-2.0.3.spec</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -1025,14 +1008,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
